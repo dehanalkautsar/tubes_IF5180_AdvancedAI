@@ -16,10 +16,11 @@ class Player(object):
             self.x = self.x-1
         elif direction=="A" and self.y > 0:
             self.y = self.y - 1
-        elif direction=="S" and self.x < board.size:
+        elif direction=="S" and self.x < board.size-1:
             self.x = self.x + 1
-        elif direction=="D" and self.y < board.size:
+        elif direction=="D" and self.y < board.size-1:
             self.y = self.y+1
+
 
         board.update_board(self.x, self.y, "P")
         self.percept["stench"] = board.board_static[self.x][self.y] == "~"
