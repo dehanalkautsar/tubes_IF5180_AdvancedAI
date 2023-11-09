@@ -8,7 +8,7 @@ from movement import *
 
 def main():
     # Print header
-    print("⭐⭐SELAMAT DATANG DI PERMAINAN WUMPUS⭐⭐")
+    print("⭐⭐WELCOME TO IF5080 SIMPLE WUMPUS WORLD⭐⭐")
 
     # Set board and player
     board_size = 10
@@ -37,9 +37,9 @@ def main():
     while True:
         print()
         myBoard.print_board()
-        print("Jumlah pergerakan pemain:", myPlayer.num_movement)
-        print("Persepsi pemain:", myPlayer.percept)
-        dir = movement()
+        print("Number of player moves:", myPlayer.num_movement)
+        print("Player perception:", myPlayer.percept)
+        dir = movement(myPlayer)
         myPlayer.num_movement += 1
         myPlayer.move(myBoard, dir)
 

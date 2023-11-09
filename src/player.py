@@ -1,5 +1,6 @@
 class Player(object):
     # Kelas Player ini boleh ditambahkan atribut/ method lain, tapi jangan menghapus/ mengubah kode yang sudah ada
+    # You can add other attributes and/or methods to this Player class, but don't delete or change the existing code.
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
@@ -26,9 +27,9 @@ class Player(object):
     def is_finished(self, listWumpus, gold):
         for wumpus in listWumpus:
             if self.x == wumpus.x and self.y == wumpus.y:
-                print("======================\nAnda kalah 😭")
+                print("======================\nYou lose 😭")
                 return True
         if self.x == gold.x and self.y == gold.y:
-            print("======================\nSelamat, Anda menang 😄")
+            print("======================\nCongratulations, you win 😄")
             return True
         return False
