@@ -9,6 +9,14 @@ class Player(object):
             "stench" : False,
             "breeze": False,
         }
+        # TAMBAHAN ATRIBUT: prev_coor to know apakah Player berhasil bergerak / menghantam tembok
+        self.prev_coor = (self.x, self.y)
+        # TAMBAHAN ATRIBUT: safe_tile_or_not {id_tile: True/False}
+        self.safe_or_not = {}
+        # TAMBAHAN ATRIBUT: hasil percept per tile {id_tile: [stench, breeze]}
+        self.percept_space = {}
+        # TAMBAHAN ATRIBUT: tile yang ingin di-percept
+        self.tile_need_to_be_checked = [(self.x, self.y)]
 
     def move(self, board, direction):
         board.update_board(self.x, self.y, board.board_static[self.x][self.y])

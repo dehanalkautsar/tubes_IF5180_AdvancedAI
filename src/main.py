@@ -43,6 +43,7 @@ def main():
     myBoard.init_board(myPlayer, listWumpus, listPit, gold)
 
     while True:
+    # while myPlayer.num_movement < 25:
         print()
         myBoard.print_board()
         print("Number of player moves:", myPlayer.num_movement)
