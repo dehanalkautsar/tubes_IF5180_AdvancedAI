@@ -6,7 +6,8 @@ class Player(object):
         self.y = y
         self.num_movement = 0
         self.percept = {
-            "stench" : False
+            "stench" : False,
+            "breeze": False,
         }
 
     def move(self, board, direction):
@@ -23,12 +24,17 @@ class Player(object):
 
 
         board.update_board(self.x, self.y, "P")
-        self.percept["stench"] = board.board_static[self.x][self.y] == "~"
+        self.percept["stench"] = board.board_static[self.x][self.y] == "~" or board.board_static[self.x][self.y] == "≌"
+        self.percept["breeze"] = board.board_static[self.x][self.y] == "=" or board.board_static[self.x][self.y] == "≌"
 
-    def is_finished(self, listWumpus, gold):
+    def is_finished(self, listWumpus, listPit, gold):
         for wumpus in listWumpus:
             if self.x == wumpus.x and self.y == wumpus.y:
-                print("======================\nYou lose 😭")
+                print("======================\nYou are eaten by Wumpus. You lose 😭")
+                return True
+        for pit in listPit:
+            if self.x == pit.x and self.y == pit.y:
+                print("======================\nYou fall into the pit. You lose 😭")
                 return True
         if self.x == gold.x and self.y == gold.y:
             print("======================\nCongratulations, you win 😄")

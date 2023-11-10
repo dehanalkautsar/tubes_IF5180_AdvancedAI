@@ -5,6 +5,7 @@ from gold import *
 from player import *
 from wumpus import *
 from movement import *
+from pit import *
 
 def main():
     # Print header
@@ -15,24 +16,31 @@ def main():
     myBoard = Board(board_size)
     myPlayer = Player()
 
-    # create wumpuses
+    # create wumpuses and pits
     listWumpus = []
-    wumpusPoint = []
+    listPit = []
+    enemyPoint = []
     while len(listWumpus) < 3:
         point = [random.randint(2, board_size - 1), random.randint(2, board_size - 1)]
-        if point not in wumpusPoint:
-            wumpusPoint.append(point)
+        if point not in enemyPoint:
+            enemyPoint.append(point)
             wumpus = Wumpus(point[0], point[1])
             listWumpus.append(wumpus)
+    while len(listPit) < 3:
+        point = [random.randint(2, board_size - 1), random.randint(2, board_size - 1)]
+        if point not in enemyPoint:
+            enemyPoint.append(point)
+            pit = Pit(point[0], point[1])
+            listPit.append(pit)
 
     #create gold
     while True:
         goldPoint = [random.randint(7, board_size - 1), random.randint(4, board_size - 1)]
-        if goldPoint not in wumpusPoint:
+        if goldPoint not in enemyPoint:
             gold = Gold(goldPoint[0], goldPoint[1])
             break
 
-    myBoard.init_board(myPlayer, listWumpus, gold)
+    myBoard.init_board(myPlayer, listWumpus, listPit, gold)
 
     while True:
         print()
@@ -43,6 +51,6 @@ def main():
         myPlayer.num_movement += 1
         myPlayer.move(myBoard, dir)
 
-        if myPlayer.is_finished(listWumpus, gold):
+        if myPlayer.is_finished(listWumpus, listPit, gold):
             break
 main()
