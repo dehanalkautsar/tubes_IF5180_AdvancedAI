@@ -31,5 +31,4 @@ def select_movement(myPlayer):
         "D" --> player will move to the right
     You can add attributes and/or methods in class Player if needed, but do not delete or replace existing attributes and classes.
     '''
-    # return random.choice(["W", "A", "S", "D"])
-    return input()
+    return random.choice(["W", "A", "S", "D"])
